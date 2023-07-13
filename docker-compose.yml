@@ -1,17 +1,20 @@
 version: '3'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - '8000:8000'
-    depends_on:
-      - db
-  db:
-    image: postgres:latest
-    environment:
-      - POSTGRES_USER=your_db_user
-      - POSTGRES_PASSWORD=your_db_password
-      - POSTGRES_DB=your_db_name
-
+    web_thunder:
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        expose:
+            - 8000
+        environment:
+            - PORT=8000
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        ports:
+            - 8000:8000
+        depends_on:
+            - web_thunder

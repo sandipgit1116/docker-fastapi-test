@@ -16,6 +16,4 @@ pipeline {
   }
 }
 
-withCredentials([string(credentialsId: 'sandipdocker1116', variable: '')]) {
-    
-}
+withCredentials([string(credentialsId: 'sandipdocker1116', variable: '')])

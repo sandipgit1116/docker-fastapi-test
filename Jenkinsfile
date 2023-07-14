@@ -2,18 +2,17 @@ pipeline {
   agent any
 
   stages {
-    stage('Build') {
+    stage('Checkout') {
       steps {
-        sh 'docker-compose build'
+        checkout scm
       }
     }
 
-    stage('Deploy') {
+    stage('Build') {
       steps {
-        sh 'docker-compose up -d'
+        sh 'docker-compose up --build -d --no-cache'
       }
     }
   }
 }
 
-withCredentials([string(credentialsId: 'sandipdocker1116', variable: '')])

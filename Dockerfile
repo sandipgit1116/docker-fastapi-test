@@ -1,4 +1,4 @@
-FROM python
+FROM python:latest
 WORKDIR /fast-api
 COPY ./requirements.txt /fast-api/
 RUN pip install --no-cache-dir --upgrade -r /fast-api/requirements.txt
